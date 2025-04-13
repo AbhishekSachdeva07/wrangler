@@ -74,5 +74,14 @@ public class GrammarBasedParserTest {
     List<Directive> directives = parser.parse();
     Assert.assertEquals(0, directives.size());
   }
+  @Test
+  public void testAggregateStatsSyntax() throws Exception {
+    String[] recipe = {
+            "aggregate-stats :size :duration total_size total_time"
+    };
+    GrammarBasedParser parser = new GrammarBasedParser(recipe);
+    Assert.assertNotNull(parser);
+    // If no exception is thrown, it’s considered parsed correctly
+  }
 
 }

@@ -43,6 +43,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import io.cdap.wrangler.api.parser.ByteSize;
+import io.cdap.wrangler.api.parser.TimeDuration;
+
 
 /**
  * This class <code>RecipeVisitor</code> implements the visitor pattern
@@ -316,6 +319,19 @@ public final class RecipeVisitor extends DirectivesBaseVisitor<RecipeSymbol.Buil
     builder.addToken(new TextList(strs));
     return builder;
   }
+
+  @Override
+  public RecipeSymbol.Builder visitValue(DirectivesParser.ValueContext ctx) {
+    String text = ctx.getText();
+
+    if (ctx.BYTE_SIZE() != null) {
+      builder.addToken(new ByteSize(text));
+    } else if (ctx.TIME_DURATION() != null) {
+      builder.addToken(new TimeDuration(text));
+    }
+    return builder;
+  }
+
 
   private SourceInfo getOriginalSource(ParserRuleContext ctx) {
     int a = ctx.getStart().getStartIndex();

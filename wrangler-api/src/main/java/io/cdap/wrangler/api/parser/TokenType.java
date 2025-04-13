@@ -48,6 +48,7 @@ public enum TokenType implements Serializable {
    * This type is associated with the token that is recognized as a directive
    * name within the recipe.
    */
+  BYTE_SIZE,
   DIRECTIVE_NAME,
 
   /**
@@ -63,7 +64,7 @@ public enum TokenType implements Serializable {
    * or a double quote (") as string.
    */
   TEXT,
-
+  TIME_DURATION,
   /**
    * Represents the enumerated type for the object of {@code Numeric} type.
    * This type is associated with the token that is either a integer or real number.
